@@ -1,0 +1,14 @@
+{
+	"folders": [
+		{
+			"path": "ustora"
+		},
+		{
+			"path": "admin_ustora"
+		}
+	],
+	"settings": {
+		"DockerRun.DisableDockerrc": true,
+		"liveServer.settings.multiRootWorkspaceName": "admin_ustora"
+	}
+}

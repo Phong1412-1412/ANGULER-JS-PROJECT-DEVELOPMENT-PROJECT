@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myAccount" ng-controller="AccountController">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login and Sign Up</title>
+  <link rel="stylesheet" href="./accountPage/style.css">
+  <script src="//code.angularjs.org/1.6.0/angular.min.js"></script>
+  <script src="//code.angularjs.org/1.6.0/angular-route.min.js"></script>
+  <script src="./accountPage/account.js"></script>
+</head>
+<body>
+  <div class="container">
+    <div class="form-container">
+      <form id="signup-form" class="form" ng-submit="loginUser(user)">
+        <h2>Login Page</h2>
+        <input type="email" placeholder="Useremail" required ng-model="user.email">
+        <input type="password" placeholder="Password" required ng-model="user.password">
+        <button type="submit">Login </button>
+      </form>
+    </div>
+  </div>
+</body>
+</html>

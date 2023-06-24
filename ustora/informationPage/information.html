@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html ng-app="myAccount" ng-controller="AccountController">
+<head>
+    <meta charset="UTF-8">
+  <title>Thông tin người dùng</title>
+  <link rel="stylesheet" href="./style.css">
+  <script src="//code.angularjs.org/1.6.0/angular.min.js"></script>
+  <script src="//code.angularjs.org/1.6.0/angular-route.min.js"></script>
+  <link rel="stylesheet" href="style.css">
+  <script src="../accountPage/account.js"></script>
+</head>
+<body>
+    <div class="container">
+      <div class="user-info">
+        <img src="path/to/user-image.jpg" alt="User Image">
+        <h2>Thông tin người dùng</h2>
+      </div>
+      <div class="user-details">
+        <p>
+          <label>Họ tên:</label> <span>{{userinfo.fullName}}</span>
+        </p>
+        <p>
+          <label>Email:</label> <span>{{userinfo.email}}</span>
+        </p>
+        <p>
+          <label>Quyền người dùng:</label> <span>{{userinfo.userRole}}</span>
+        </p>
+      </div>
+      <a href="edit-user.html">Chỉnh sửa thông tin</a>
+      <a href="../index.html" style="padding: 0 30px;">TRỞ LẠI</a>
+    </div>
+  </body>
+</html>

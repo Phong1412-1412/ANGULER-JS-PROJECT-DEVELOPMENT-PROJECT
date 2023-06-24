@@ -1,0 +1,16 @@
+.table-responsive {
+    max-height: 1000px; /* Chiều cao cố định cho khung cuộn */
+    overflow: auto; /* Tạo khung cuộn khi nội dung quá dài */
+}
+
+.table td {
+    width: auto; /* Giới hạn chiều rộng của ô dữ liệu */
+    white-space: nowrap; /* Ngăn chặn xuống dòng */
+    overflow: hidden;
+    text-overflow: ellipsis; /* Hiển thị dấu ba chấm khi tràn ngang */
+}
+
+.error-toast {
+    background-color: red;
+    color: white;
+  }

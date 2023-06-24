@@ -1,0 +1,99 @@
+<div class="row">
+	<div class="col-12">
+		<div class="card">
+			<div class="card-header">
+				<h4 class="card-title">User Tables</h4>
+				<a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
+				<div class="heading-elements">
+					<ul class="list-inline mb-0">
+						<li><a data-action="collapse"><i class="ft-minus"></i></a></li>
+						<li><a data-action="reload"><i class="ft-rotate-cw"></i></a></li>
+						<li><a data-action="expand"><i class="ft-maximize"></i></a></li>
+						<li><a data-action="close"><i class="ft-x"></i></a></li>
+					</ul>
+				</div>
+			</div>
+			<div class="card-content collapse show">
+				<div class="card-body">
+					<p class="card-text">Using the most basic table markup, here’s how <code>.table</code>-based tables look in Bootstrap. You can use any example of below table for your table and it can be use with any type of bootstrap tables. </p>
+					<div class="table-responsive" ng-controller="UserController">
+						<button data-toggle="modal" data-target="#addProductModal" class="btn btn-success mb-3"  ng-click="showAddForm = true"><i class="fas fa-plus"></i> Thêm mới người dùng</button> <!-- Thêm nút "Thêm mới sản phẩm" -->
+
+						<div id="addProductModal" class="modal fade" tabindex="-1" role="dialog">
+							<div class="modal-dialog" role="document">
+								<div class="modal-content" style="min-width: 700px;">
+									<div class="modal-header">
+										<h5 class="modal-title">Thêm mới người dùng</h5>
+										<button type="button" class="close" data-dismiss="modal" aria-label="Close" >
+											<span aria-hidden="true">&times;</span>
+										</button>
+									</div>
+									<div class="modal-body">
+										<form>
+											<div class="form-group">
+												<label for="userName">Tên người dùng</label>
+												<input type="text" class="form-control" id="userName" ng-model="newUser.fullName"  placeholder="Tên người dùng">
+											</div>
+											<div class="form-group">
+												<label for="userPrice">Email</label>
+												<input type="text" class="form-control" id="userEmail" ng-model="newUser.email" placeholder="Email">
+											</div>
+											<div class="form-group" ng-if="isEditMode === false">
+												<label for="userDescription">password</label>
+												<input type="password" class="form-control" id="userPassword" ng-model="newUser.password" placeholder="Password">
+											</div>
+											<div class="form-group">
+												<label for="userImage">Hình ảnh</label>
+												<input type="text" class="form-control" id="userImage" 
+												 ng-model="newUser.avatar" placeholder="Link hình ảnh">
+											</div>
+											<div class="form-group">
+												<label for="userCategoryId">ROLE</label>
+												<select class="form-control" id="userCategoryId" ng-model="newUser.userRole">
+													<option value="1" ng-selected="newUser.userRole === 'ROLE_ADMIN'">ROLE_ADMIN</option>
+													<option value="0" ng-selected="newUser.userRole === 'ROLE_USER'">ROLE_USER</option>
+												</select>
+											</div>											
+											
+										</form>
+									</div>
+									<div class="modal-footer">
+										<button type="button" class="btn btn-primary" ng-click="addUser(newUser)">{{isEditMode? 'Cập nhật': 'Thêm'}}</button>
+										<button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<table class="table">
+							<thead>
+								<tr>
+									<th>STT</th>
+									<th>Action</th>
+									<th>Full Name</th>
+                                    <th>Email</th>
+									<th>Image</th>
+									<th>ROLE</th>
+								</tr>
+							</thead>
+							<tbody ng-repeat="user in users">
+								<tr>
+									<th scope="row">{{$index + 1}}</th>
+									<td>
+										<button class="btn btn-primary btn-sm" ng-click="editUser(user)"><i class="fas fa-edit"></i> Edit</button>
+										<button class="btn btn-danger btn-sm" ng-click="deleteUser(user.id)"><i class="fas fa-trash"></i> Delete</button>
+									</td> 
+									<td>{{user.fullName}}</td>
+									<td>{{user.email}}</td>
+									<td>{{user.image}}</td>
+									<td>{{user.userRole}}</td>
+								</tr>
+							</tbody>
+						</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

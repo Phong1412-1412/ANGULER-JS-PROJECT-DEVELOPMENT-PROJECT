@@ -1,0 +1,117 @@
+<div class="row">
+	<div class="col-12">
+		<div class="card">
+			<div class="card-header">
+				<h4 class="card-title">Order Tables</h4>
+				<a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
+				<div class="heading-elements">
+					<ul class="list-inline mb-0">
+						<li><a data-action="collapse"><i class="ft-minus"></i></a></li>
+						<li><a data-action="reload"><i class="ft-rotate-cw"></i></a></li>
+						<li><a data-action="expand"><i class="ft-maximize"></i></a></li>
+						<li><a data-action="close"><i class="ft-x"></i></a></li>
+					</ul>
+				</div>
+			</div>
+			<div class="card-content collapse show">
+				<div class="card-body">
+					<p class="card-text">Using the most basic table markup, here’s how <code>.table</code>-based tables look in Bootstrap. You can use any example of below table for your table and it can be use with any type of bootstrap tables. </p>
+					<div class="table-responsive" ng-controller="OrderController">
+						<div id="addProductModal" class="modal fade" tabindex="-1" role="dialog">
+							<div class="modal-dialog" role="document">
+								<div class="modal-content" style="min-width: 700px;">
+									<div class="modal-header">
+										<h5 class="modal-title">Chi tiết đơn hàng đơn hàng</h5>
+										<button type="button" class="close" data-dismiss="modal" aria-label="Close" ng-click="cancel()">
+											<span aria-hidden="true">&times;</span>
+										</button>
+									</div>
+									<div class="modal-body">
+										<div class="container">
+                                            <div class="row" style="margin-bottom: 20px;">
+                                              <div class="col-md-12">
+                                                <h3>Order Details</h3>
+                                                <p><strong>Order ID:</strong> {{orderResponse.order.id}}</p>
+                                                <p><strong>Customer:</strong> {{orderResponse.order.user.fullName}}</p>
+                                                <p><strong>Created At:</strong> {{orderResponse.order.created_at? orderResponse.order.created_at.toLocaleString() : '' | formatDateTime}}</p>
+                                                <p><strong>Total:</strong> {{orderResponse.order.totalPrice? orderResponse.order.totalPrice.toLocaleString() : '' | formatCurrencyVND}}</p>
+                                                <label for="orderResponseId">Status</label>
+                                                <select ng-model="orderResponse.order.orderStatus" class="form-control" id="orderResponseId">
+                                                    <option value="PREPARE">Prepare</option>
+                                                    <option value="ONGOING">Ongoing</option>
+                                                    <option value="COMPLETE">Complete</option>
+                                                  </select>                                                  
+                                              </div>
+                                            </div>
+                                            
+                                            <div class="row">
+                                              <div class="col-md-12">
+                                                <h4>Product Details</h4>
+                                                <table class="table">
+                                                  <thead>
+                                                    <tr>
+                                                      <th>Product Name</th>
+                                                      <th>Price</th>
+                                                      <th>Quantity</th>
+                                                      <th>Total</th>
+                                                    </tr>
+                                                  </thead>
+                                                  <tbody>
+                                                    <tr ng-repeat="orderDetail in orderResponse.orderDetailResponses">
+                                                      <td>{{orderDetail.product.name}}</td>
+                                                      <td>{{orderDetail.product.price | formatCurrencyVND}}</td>
+                                                      <td>{{orderDetail.quantity}}</td>
+                                                      <td>{{orderDetail.total | formatCurrencyVND}}</td>
+                                                    </tr>
+                                                  </tbody>
+                                                </table>
+                                              </div>
+                                            </div>
+                                          </div>
+                                          
+									</div>
+									<div class="modal-footer">
+										<button type="button" class="btn btn-danger" ng-click="deleteOrder(orderResponse.order.id)">DELETE</button>
+										<button type="button" class="btn btn-primary" ng-click="updateOrder(orderResponse.order.id, orderResponse.order.orderStatus)">{{isEditMode? 'Cập nhật': 'Thêm'}}</button>
+										<button type="button" class="btn btn-secondary" data-dismiss="modal" ng-click="cancel()">Hủy</button>
+									</div>
+								</div>
+							</div>
+						</div>	
+						<label for="orderStatus">SELECT: ORDER STATUS</label>
+						<select style="cursor: pointer;" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" id="orderStatus" ng-model="status" ng-change="onStatusChange()">
+							<option value="">ALL</option>
+							<option value="PREPARE">PREPARE</option>
+							<option value="ONGOING">ONGOING</option>
+							<option value="COMPLETE">COMPLETE</option>
+						</select>						  
+						<table class="table">
+							<thead>
+								<tr>
+									<th>STT</th>
+									<th>ORDER ID</th>
+                                    <th>CUSTOMER</th>
+									<th>CREATED_AT</th>
+									<th>TOTAL</th>
+                                    <th>STATUS</th>
+								</tr>
+							</thead>
+							<tbody ng-repeat="order in orders">
+								<tr ng-click="handleOpenOrderDetail(order.user.id, order.id)" style="cursor: pointer;">
+									<th scope="row">{{$index + 1}}</th>
+
+									<td>{{order.id}}</td>
+                                    <td>{{order.user.fullName}}</td>
+                                    <td>{{order.created_at | formatDateTime}}</td>
+                                    <td>{{order.totalPrice | formatCurrencyVND}}</td>
+                                    <td>{{order.orderStatus}}</td>   
+								</tr>
+							</tbody>
+						</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

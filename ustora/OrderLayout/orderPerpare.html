@@ -1,0 +1,100 @@
+<div class="col-md-9">
+    <div class="product-content-right">
+        <div class="woocommerce">
+            <div id="addProductModal" class="modal fade" tabindex="-1" role="dialog">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content" style="min-width: 700px;">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Chi tiết đơn hàng đơn hàng</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close" ng-click="cancel()"  style="margin-top: -20px;">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="container">
+                                <div class="row" style="margin-bottom: 20px;">
+                                  <div class="col-md-7">
+                                    <p><strong>Mã hóa đơn:</strong> {{orderDetails.order.id}}</p>
+                                    <p><strong>Khách hàng:</strong> {{orderDetails.order.user.fullName}}</p>
+                                    <p><strong>Ngày tạo:</strong> {{orderDetails.order.created_at? orderDetails.order.created_at.toLocaleString() : '' | formatDateTime}}</p>
+                                    <p><strong>Tống hóa đơn:</strong> {{orderDetails.order.totalPrice? orderDetails.order.totalPrice.toLocaleString() : '' | formatCurrencyVND}}</p>
+                                    <p><strong>Trạng thái:</strong> Đơn hàng đang đươc người bán chuẩn bị</p>                                                 
+                                  </div>
+                                </div>
+                                
+                                <div class="row">
+                                  <div class="col-md-7">
+                                    <h4>Chi tiết sản phẩm</h4>
+                                    <table class="table">
+                                      <thead>
+                                        <tr>
+                                          <th>Tên sản phẩm</th>
+                                          <th>Giá</th>
+                                          <th>Số lượng</th>
+                                          <th>Tổng</th>
+                                        </tr>
+                                      </thead>
+                                      <tbody>
+                                        <tr ng-repeat="orderDetail in orderDetails.orderDetailResponses">
+                                          <td>{{orderDetail.product.name}}</td>
+                                          <td>{{orderDetail.product.price | formatCurrencyVND}}</td>
+                                          <td>{{orderDetail.quantity}}</td>
+                                          <td>{{orderDetail.total | formatCurrencyVND}}</td>
+                                        </tr>
+                                      </tbody>
+                                    </table>
+                                  </div>
+                                </div>
+                              </div>
+                              
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" ng-click="deleteOrder(orderResponse.order.id)">Hủy đơn hàng</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal" ng-click="cancel()">Hủy</button>
+                        </div>
+                    </div>
+                </div>
+            </div>	
+            <form method="post" action="#">
+                <table cellspacing="0" class="shop_table cart table table-dark table-hover">
+                    <thead>
+                        <tr>
+                            <th class="product-thumbnail">STT</th>
+                            <th class="product-name">Mã đơn hàng</th>
+                            <th class="product-price">Tên khách hàng</th>
+                            <th class="product-quantity">Ngày tạo</th>
+                            <th class="product-subtotal">Tổng đơn hàng</th>
+                            <th class="product-subtotal">Trạng thái</th>
+                        </tr>
+                    </thead>
+                    <tbody >
+                        <tr class="cart_item" ng-repeat="item in orders" ng-click="handleOpenOrderDetail(item)" style="cursor: pointer;">
+                            <td class="product-thumbnail">
+                                <p>{{$index + 1}}</p>
+                            </td>
+                            <td class="product-name" style="width: 200px;">
+                                <p>{{item.order.id}}</p>
+                            </td>
+                            <td class="product-name" style="width: 200px;">
+                                <p>{{item.order.user.fullName}}</p>
+                            </td>
+                            <td class="product-name">
+                                <p>{{item.order.created_at | formatDateTime}}</p>
+                            </td>
+
+                            <td class="product-name" style="width: 200px;">
+                                <span class="amount">{{item.order.totalPrice | formatCurrencyVND}}</span> 
+                            </td>
+                            <td class="product-name" style="width: 150px;">
+                                <p>{{item.order.orderStatus}}</p>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </form>
+
+            <div class="cart-collaterals">  
+            </div>
+        </div>                        
+    </div>                    
+</div>

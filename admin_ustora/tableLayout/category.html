@@ -1,0 +1,72 @@
+<div class="row">
+	<div class="col-12">
+		<div class="card">
+			<div class="card-header">
+				<h4 class="card-title">Category Tables</h4>
+				<a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
+				<div class="heading-elements">
+					<ul class="list-inline mb-0">
+						<li><a data-action="collapse"><i class="ft-minus"></i></a></li>
+						<li><a data-action="reload"><i class="ft-rotate-cw"></i></a></li>
+						<li><a data-action="expand"><i class="ft-maximize"></i></a></li>
+						<li><a data-action="close"><i class="ft-x"></i></a></li>
+					</ul>
+				</div>
+			</div>
+			<div class="card-content collapse show">
+				<div class="card-body">
+					<p class="card-text">Using the most basic table markup, here’s how <code>.table</code>-based tables look in Bootstrap. You can use any example of below table for your table and it can be use with any type of bootstrap tables. </p>
+					<div class="table-responsive" ng-controller="CategoryController">
+						<button data-toggle="modal" data-target="#addProductModal" class="btn btn-success mb-3"  ng-click="showAddForm = true"><i class="fas fa-plus"></i> Thêm mới danh mục</button> <!-- Thêm nút "Thêm mới sản phẩm" -->
+
+						<div id="addProductModal" class="modal fade" tabindex="-1" role="dialog">
+							<div class="modal-dialog" role="document">
+								<div class="modal-content" style="min-width: 700px;">
+									<div class="modal-header">
+										<h5 class="modal-title">Thêm mới danh mục</h5>
+										<button type="button" class="close" data-dismiss="modal" aria-label="Close" >
+											<span aria-hidden="true">&times;</span>
+										</button>
+									</div>
+									<div class="modal-body">
+										<form>
+											<div class="form-group">
+												<label for="categoryName">Tên danh mục</label>
+												<input type="text" class="form-control" id="categoryName" ng-model="newCategory.name"  placeholder="Tên danh mục">
+											</div>	
+										</form>
+									</div>
+									<div class="modal-footer">
+										<button type="button" class="btn btn-primary" ng-click="addCategory(newCategory)">{{isEditMode? 'Cập nhật': 'Thêm'}}</button>
+										<button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<table class="table">
+							<thead>
+								<tr>
+									<th>STT</th>
+									<th>Action</th>
+									<th>Name</th>
+								</tr>
+							</thead>
+							<tbody ng-repeat="category in categories">
+								<tr>
+									<th scope="row">{{$index + 1}}</th>
+									<td>
+										<button class="btn btn-primary btn-sm" ng-click="editUser(user)"><i class="fas fa-edit"></i> Edit</button>
+										<button class="btn btn-danger btn-sm" ng-click="deleteUser(user.id)"><i class="fas fa-trash"></i> Delete</button>
+									</td> 
+									<td>{{category.name}}</td>
+								</tr>
+							</tbody>
+						</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

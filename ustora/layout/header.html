@@ -1,0 +1,49 @@
+<div class="header-area" ng-controller="HeaderController">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="user-menu">
+                    <ul>
+                        <li ng-if="acctions === 'Đăng xuất'"><a href="../informationPage/information.html"><i class="fa fa-user"></i>Tài khoản</a></li>
+                        <li ng-if="acctions === 'Đăng xuất'"><a href="../table-08/index.html"><i class="fa fa-heart"></i> Yêu thích</a></li>
+                        <li ng-if="acctions === 'Đăng xuất'"><a href="../myOrder.html"><i class="fa fa-user"></i>Đơn hàng</a></li>
+                        <li ng-if="acctions === 'Đăng xuất'"><a href="checkout.html"><i class="fa fa-user"></i> Checkout</a></li>
+                        <li>
+                            <a ng-href="./accountPage/loginPage.html" ng-if="acctions === 'Đăng nhập'">
+                              <i class="fa fa-user"></i>{{ acctions }}
+                            </a>
+                            <a ng-click="logout()" ng-if="acctions === 'Đăng xuất'">
+                              <i class="fa fa-user"></i>{{ acctions }}
+                            </a>
+                          </li>                          
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="col-md-4">
+                <div class="header-right">
+                    <ul class="list-unstyled list-inline">
+                        <li class="dropdown dropdown-small">
+                            <a data-toggle="dropdown" data-hover="dropdown" class="dropdown-toggle" href="#"><span class="key">Tiền tệ :</span><span class="value">VNĐ </span><b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">USD</a></li>
+                                <li><a href="#">INR</a></li>
+                                <li><a href="#">GBP</a></li>
+                            </ul>
+                        </li>
+
+                        <li class="dropdown dropdown-small">
+                            <a data-toggle="dropdown" data-hover="dropdown" class="dropdown-toggle" href="#"><span class="key">Ngôn ngữ :</span><span class="value">Vietnamese </span><b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">Vietnamese</a></li>
+                                <li><a href="#">French</a></li>
+                                <li><a href="#">German</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div> <!-- End header area -->
